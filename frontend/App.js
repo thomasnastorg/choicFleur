@@ -1,12 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import BoutonGeam from './Components/BoutonGeam';
-import Logo from './Components/Logo';
+import Game from './Components/Game';
 
 export default function App() {
   return (
-    <Logo/>,
-    <BoutonGeam/>
+    <Game/>
   );
 }
 
