@@ -1,10 +1,14 @@
 import React from 'react';
-import {StyleSheet,Alert, Button, View} from 'react-native';
+import {StyleSheet,Alert, Button, View,Text} from 'react-native';
 
 class BoutonGeam extends React.Component{
     render(){
         return(
+            
             <View style={styles.viewbutton}>
+                <View>
+                    <Text style ={styles.viewText}>coucou</Text>
+                </View>
                 <View style={styles.viewOneButton}>
                     <Button 
                 title="un pied"
@@ -38,6 +42,9 @@ const styles = StyleSheet.create({
         
         height: 50,
         width: 40,
+    },
+    viewText:{
+        flex: 1,
     },
     buttonleft: {
         flex: 1,
