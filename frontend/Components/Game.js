@@ -3,12 +3,32 @@ import {StyleSheet,Alert, Button, View,Text,Image} from 'react-native';
 
 
 class Game extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+          bouton: ''
+        };
+      };
+      updateText = (result) => {
+        if( this.state.bouton != 'Chou'){
+            this.setState({bouton: 'Chou'})
+    }else if( this.state.bouton = 'Chou')
+    this.setState({bouton: 'vous avez déja selection se bouton'})
+    }
+    
+    updateText1 = (result) => {
+        if( this.state.bouton != 'Chou-Fleur'){
+            this.setState({bouton: 'Chou-Fleur'})
+    }else if( this.state.bouton = 'Chou-Fleur')
+    this.setState({bouton: 'vous avez déja selection se bouton'})
+    }
+      
     render(){
         return(
             
             <View style ={styles.viewGeneral}>
                 <View style ={styles.viexTitre}>
-                    <Text style = {({fontSize: 60})}>Choux-Fleur</Text>
+                    <Text style = {({fontSize: 60,paddingBottom: 20})} > Choux-Fleur </Text>
                 </View>
                 <View style ={styles.viewChaussur}>
                     <Image
@@ -16,7 +36,7 @@ class Game extends React.Component{
                         source={require('../assets/rougeblancgris.png')}
                  
                     />
-
+                    <Text>{this.state.bouton}</Text>
                     <Image
                     style={styles.chaussurImage}
                     source={require('../assets/bleugrisnoir.png')}
@@ -27,17 +47,14 @@ class Game extends React.Component{
                     <View style={styles.viewbutton}>
                         <View style={styles.viewOneButton}>
                             <Button 
-                        title="un pied"
-                        color="#2196F3"
-                        onPress = {() => Alert.alert('all right')}
-            
-                     />
+                                title="Chou"
+                                onPress = {this.updateText}
+                            />
                     </View>
                         <View style={styles.viewOneButton}>
                             <Button 
-                    
-                            title="un demi pied"
-                
+                            title="Chou-Fleur"
+                            onPress = {this.updateText1}
                             />
                     </View>
                 </View>
@@ -48,8 +65,8 @@ class Game extends React.Component{
 const styles = StyleSheet.create({
     viewGeneral: {
         flex: 1,
-        flexDirection: 'colum',
-        
+        //flexDirection: 'colum',
+       backgroundColor: '#F2EBBF'
         
         
     },
@@ -66,9 +83,7 @@ const styles = StyleSheet.create({
     },
     viewOneButton: {
         flex: 1,
-        
         alignItems: 'center',
-        
         height: 50,
         width: 40,
     },
@@ -85,12 +100,11 @@ const styles = StyleSheet.create({
     },
     buttonRight: {
         flex: 1,
-        
         color:"#2196F3"
     },
     chaussurImage: {
-        width: 100,
-        height: 100
+        width: 50,
+        height: 50
     }
 })
 export default Game
