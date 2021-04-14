@@ -6,21 +6,50 @@ class Game extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-          bouton: ''
+          bouton: '',
+          tour: true, //true = bleu , fauls = rouge
+          nbTourBleu:0, // unpied = 2 demi pied 1 
+          nbTourRouge:0,// unpied = 2 demi pied 1 
+          maxTour:20
         };
       };
-      updateText = (result) => {
-        if( this.state.bouton != 'Chou'){
-            this.setState({bouton: 'Chou'})
-    }else if( this.state.bouton = 'Chou')
-    this.setState({bouton: 'vous avez déja selection se bouton'})
+
+
+      unPied= (result) => {
+        if( this.state.tour == true){
+            this.state.nbTourBleu = this.state.nbTourBleu + 2;
+            this.state.tour = false
+    }else if( this.state.tour == false){
+        this.state.nbTourRouge = this.state.nbTourRouge + 2;
+        this.state.tour = true
     }
+    console.log("bleu :", this.state.nbTourBleu);
+    console.log("rouge :", this.state.nbTourRouge)
+    console.log(this.state.tour);
+}
     
-    updateText1 = (result) => {
-        if( this.state.bouton != 'Chou-Fleur'){
-            this.setState({bouton: 'Chou-Fleur'})
-    }else if( this.state.bouton = 'Chou-Fleur')
-    this.setState({bouton: 'vous avez déja selection se bouton'})
+    demiPied = (result) => {
+        if( this.state.tour == true){
+            this.state.nbTourBleu = this.state.nbTourBleu + 1;
+            this.state.tour = false
+           
+    }else if( this.state.tour == false){
+    this.state.nbTourRouge = this.state.nbTourRouge + 1;
+    this.state.tour = true
+    }
+    console.log("bleu :",this.state.nbTourBleu);
+    console.log("rouge :", this.state.nbTourRouge);
+    console.log(this.state.tour);
+}    
+
+    componentDidUpdate(){
+        if( this.state.tour == true){
+            console.log("c'est au tour du bleu de jouer")
+        }else if( this.state.tour == false){
+            console.log("c'est au tour du rouge de jouer")
+        }
+        console.warn("bleu :", this.state.nbTourBleu);
+        console.log("rouge :", this.state.nbTourRouge)
     }
       
     render(){
@@ -28,9 +57,10 @@ class Game extends React.Component{
             
             <View style ={styles.viewGeneral}>
                 <View style ={styles.viexTitre}>
-                    <Text style = {({fontSize: 60,paddingBottom: 20})} > Choux-Fleur </Text>
+                    <Text style = {({fontSize: 60,paddingBottom: 20})} > Choux-Fleur</Text>
                 </View>
                 <View style ={styles.viewChaussur}>
+                <Text > </Text>
                     <Image
                         style={styles.chaussurImage}
                         source={require('../assets/rougeblancgris.png')}
@@ -48,13 +78,13 @@ class Game extends React.Component{
                         <View style={styles.viewOneButton}>
                             <Button 
                                 title="Chou"
-                                onPress = {this.updateText}
+                                onPress = {this.unPied}
                             />
                     </View>
                         <View style={styles.viewOneButton}>
                             <Button 
                             title="Chou-Fleur"
-                            onPress = {this.updateText1}
+                            onPress = {this.demiPied}
                             />
                     </View>
                 </View>
