@@ -1,5 +1,10 @@
-import React from 'react';
-import {StyleSheet,Alert, Button, View,Text,Image} from 'react-native';
+import React, { useState } from 'react';
+import {StyleSheet,Alert, Button, View,Text,Image, Dimensions} from 'react-native';
+
+const screenWidth = Dimensions.get("screen").width
+const screenheight = Dimensions.get("screen").height
+//const [chaussurGauche, setchaussurGauche] = useState(screenWidth/2)
+
 
 
 class Game extends React.Component{
@@ -41,7 +46,9 @@ class Game extends React.Component{
     console.log("rouge :", this.state.nbTourRouge);
     console.log(this.state.tour);
 }    
-
+    useEffectChaussuLeft(){
+        if() 
+    }
     componentDidUpdate(){
         if( this.state.tour == true){
             console.log("c'est au tour du bleu de jouer")
@@ -51,7 +58,9 @@ class Game extends React.Component{
         console.warn("bleu :", this.state.nbTourBleu);
         console.log("rouge :", this.state.nbTourRouge)
     }
-      
+    
+
+    
     render(){
         return(
             
@@ -60,19 +69,16 @@ class Game extends React.Component{
                     <Text style = {({fontSize: 60,paddingBottom: 20})} > Choux-Fleur</Text>
                 </View>
                 <View style ={styles.viewChaussur}>
-                <Text > </Text>
-                    <Image
+                    <Image 
+                        
                         style={styles.chaussurImage}
                         source={require('../assets/rougeblancgris.png')}
-                 
+
                     />
-                    <Text>{this.state.bouton}</Text>
                     <Image
                     style={styles.chaussurImage}
                     source={require('../assets/bleugrisnoir.png')}
-                 
                     />
-
                 </View>
                     <View style={styles.viewbutton}>
                         <View style={styles.viewOneButton}>
@@ -92,6 +98,10 @@ class Game extends React.Component{
         )
     }
 }
+
+
+
+
 const styles = StyleSheet.create({
     viewGeneral: {
         flex: 1,
@@ -118,7 +128,6 @@ const styles = StyleSheet.create({
         width: 40,
     },
     viewChaussur:{
-        flex: 5,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -133,8 +142,10 @@ const styles = StyleSheet.create({
         color:"#2196F3"
     },
     chaussurImage: {
-        width: 50,
-        height: 50
+        //flex:1,
+        width: screenWidth / 5,//largeur
+        height: screenheight / 12,//hauteur
+        
     }
 })
 export default Game
