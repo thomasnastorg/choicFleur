@@ -1,68 +1,30 @@
+import { BackgroundFetch } from 'expo';
 import React from 'react';
+import {StyleSheet,Alert, Button, View,Text,Image, Dimensions} from 'react-native';
 
-
-const chaussur = ({chaussurBottom, chaussurLeft}) =>{
-    
+const ChaussureSolo = ({chaussurGauche, chaussurBas}) =>{
+    const screenWidth = Dimensions.get("screen").width
+    const screenHeight = Dimensions.get("screen").height
     return(
-        <View style ={styles.viewChaussur}>
+       
         <Image 
-            
-            style={styles.chaussurImage}
-            source={require('../assets/rougeblancgris.png')}
+                       
+        style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            position: 'absolute',
+            width: screenWidth/5,
+            height: screenHeight / 12,
+            left: chaussurGauche
 
-        />
-        <Image
-        style={styles.chaussurImage}
-        source={require('../assets/bleugrisnoir.png')}
-        />
-    </View>
+        }}
+        source={require('../assets/rougeblancgris.png')}
+
+    />
+        
+       
     )
 }
-const styles = StyleSheet.create({
-    viewGeneral: {
-        flex: 1,
-        //flexDirection: 'colum',
-       backgroundColor: '#F2EBBF'
-        
-        
-    },
-    viexTitre:{
-        flex: 1,
-        alignItems: 'center',
-        
-    },
-    viewbutton: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'flex-end'
-    },
-    viewOneButton: {
-        flex: 1,
-        alignItems: 'center',
-        height: 50,
-        width: 40,
-    },
-    viewChaussur:{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    buttonleft: {
-        flex: 1,
-        
-        color:"#2196F3"
-    },
-    buttonRight: {
-        flex: 1,
-        color:"#2196F3"
-    },
-    chaussurImage: {
-        //flex:1,
-        width: screenWidth / 5,
-        height: screenheight / 12,
-        
-    }
-})
 
-export default chaussur
+export default ChaussureSolo
+
