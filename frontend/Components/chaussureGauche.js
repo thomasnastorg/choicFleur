@@ -2,7 +2,7 @@ import { BackgroundFetch } from 'expo';
 import React from 'react';
 import {StyleSheet,Alert, Button, View,Text,Image, Dimensions} from 'react-native';
 
-const ChaussureSolo = ({chaussureSolo}) =>{
+const ChaussureGauche = ({chaussurGauche}) =>{
     const screenWidth = Dimensions.get("screen").width
     const screenHeight = Dimensions.get("screen").height
     return(
@@ -14,11 +14,11 @@ const ChaussureSolo = ({chaussureSolo}) =>{
             justifyContent: 'space-between',
             position: 'absolute',
             width: screenWidth/5,
-            height: screenHeight / 12,
-            left: chaussureSolo
+            height: screenHeight/12,
+            right: chaussurGauche
 
         }}
-        source={require('../assets/rougeblancgris.png')}
+        source={require('../assets/bleugrisnoir.png')}
 
     />
         
@@ -26,5 +26,5 @@ const ChaussureSolo = ({chaussureSolo}) =>{
     )
 }
 
-export default ChaussureSolo
+export default ChaussureGauche
 

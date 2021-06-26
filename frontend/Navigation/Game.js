@@ -1,33 +1,114 @@
 import React, { useState,useEffect  } from 'react';
 import {StyleSheet,Alert, Button, View,Text,Image, Dimensions} from 'react-native';
 import ChaussureSolo from '../Components/chaussureSolo'
+import ChaussureGauche from '../Components/chaussureGauche';
 
-export default function Game(){
 
- const [chaussurGauche, setchaussurGauche] = useState(0);
- let deplacement = 0
- useEffect(() => {
-    // Update the document title using the browser API
-    deplacement =  chaussurGauche;
-  });
+function Game(){
 
+ const [chaussureSolo, setchaussureSolo] = useState(0);
+ const [chaussureGauche, setchaussureGauche] = useState(0);
+ const [trune, settrune] = useState(true);
+ const [textEvent, settextEvent] = useState('c\'est au tour de la chaussure gauche de jouer');
+ const [button, setbutton] = useState(false);
+ const screenWidth = Dimensions.get("screen").width
+ 
+ 
+ 
+
+ const text = () =>{
+     if(trune == true ){
+        
+         settextEvent('c\'est au tour de la chaussure droite de jouer')
+         settrune(false)
+         
+     }
+     else if(trune == false ){
+        
+        settextEvent('c\'est au tour de la chaussure gauche de jouer')
+        settrune(true)
+        
+     }
+ }
+
+
+ useEffect(() =>{
+    if ((chaussureSolo + 70 + chaussureGauche + 70) > screenWidth){
+        if (trune == true){
+           settextEvent('la chaussure droite a gagné')
+           setbutton(true)
+
+        }
+        if (trune == false){
+           settextEvent('la chaussure gauche a gagné')
+           setbutton(true)
+
+        }
+    }
+});
+
+ const onPressHandlerChou = () => {
+   
+    if ( chaussureSolo < (screenWidth/2) && trune == true){
+        setchaussureSolo(chaussureSolo => chaussureSolo + (screenWidth/2)/5)
+        text()
+          
+     } else if(chaussureGauche < (screenWidth/2) && trune == false){
+        setchaussureGauche(chaussureGauche => chaussureGauche + (screenWidth/2)/5)
+        text() 
+          
+     }
+ }
+ 
+ const onPressHandlerChouFleur = () => {
+    
+    if ( chaussureSolo < (screenWidth/2) && trune == true){
+        setchaussureSolo(chaussureSolo => chaussureSolo + (screenWidth/2)/10)    
+        text()
+            
+     }else if(chaussureGauche < (screenWidth/2) && trune == false){
+        setchaussureGauche(chaussureGauche => chaussureGauche + (screenWidth/2)/10)
+        text()
+          
+     } 
+
+   
+ }
+ 
 return(
     <View style ={styles.viewGeneral}>
     <ChaussureSolo 
-    chaussurGauche = {deplacement}
+    chaussureSolo = {chaussureSolo}
     />
+    <ChaussureGauche
+    chaussurGauche = {chaussureGauche}
+    />
+
+
+    <View>
+    <Text>
+        {textEvent}
+    </Text>
+    
+    </View>
+
     <View style={styles.viewbutton}>
                         <View style={styles.viewOneButton}>
                             <Button 
-                                title="Chou"
-                                onPress={this.handleClick}  />
+                                disabled={button}
+                                title='Chou'
+                                onPress={onPressHandlerChou}  />
+                                
                     </View>
+                    
                         <View style={styles.viewOneButton}>
                             <Button 
+                            disabled={button}
                             title="Chou-Fleur"
-                            
+                            onPress={onPressHandlerChouFleur}
                             />
                     </View>
+                    
                 </View>
     </View>
     
@@ -57,3 +138,5 @@ const styles = StyleSheet.create({
         width: 40,
     },
 });
+
+export default Game;
